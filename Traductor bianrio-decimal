@@ -1,0 +1,54 @@
+#include <LiquidCrystal.h>
+
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+
+
+const int UNO = 7;
+int vUNO = 0;
+int B_vUNO = 0;
+
+const int CERO = 6;
+int vCERO = 0; 
+int B_vCERO = 0;
+String vBinary = ""; 
+
+void setup() {
+  lcd.begin(16, 2);
+ 
+}
+
+int BinaryConv(String vBinary){ 
+const char* number = vBinary.c_str();
+unsigned int rBinary = strtoul(number, NULL, 2);
+return rBinary;
+}
+
+
+void loop() {
+
+  lcd.setCursor(1, 0);
+  
+  vUNO= digitalRead(UNO);
+  vCERO= digitalRead(CERO); 
+
+if ((vUNO == HIGH)){
+   vBinary = vBinary + "1";
+  lcd.print(vBinary);
+  delay(250);
+}else if (vCERO == LOW){
+  
+}
+
+if ((vCERO == HIGH)){
+   vBinary = vBinary + "0";
+  lcd.print(vBinary);
+  delay(250);
+}else if (vCERO == LOW){
+  
+}
+
+  lcd.setCursor(0, 1);
+  lcd.print(BinaryConv(vBinary));
+  delay(250);
+
+}
